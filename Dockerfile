@@ -14,8 +14,8 @@ RUN wget https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar
 
 RUN tar zxvf /tmp/logstash.tar.gz -C /opt && mv /opt/logstash-1.4.2 /opt/logstash && rm -rf /tmp/logstash.tar.gz
 
-RUN mkdir /opt/certs
-RUN [ -f /opt/certs/logstash-forwarder.cr ] && echo "Cert already exists." || openssl req -x509 -batch -nodes -newkey rsa:2048 -keyout /opt/certs/logstash-forwarder.key -out /opt/certs/logstash-forwarder.cr
+RUN [ -d /opt/certs ] || mkdir /opt/certs
+RUN [ -f /opt/certs/logstash-forwarder.cr ] || openssl req -x509 -batch -nodes -newkey rsa:2048 -keyout /opt/certs/logstash-forwarder.key -out /opt/certs/logstash-forwarder.cr
 
 
 ADD start_logstash.sh /usr/local/bin/start_logstash.sh

@@ -2,14 +2,6 @@
 
 Logstash 1.4.2
 
-
-Create OpenSSL certificates for secure communication with logstash-forwarder.
-The build will fail if no certs are present.
-
-    mkdir certs && cd certs
-
-    openssl req -x509 -batch -nodes -newkey rsa:2048 -keyout logstash-forwarder.key -out logstash-forwarder.crt
-
 Pull from the Hub:
 
     docker pull denibertovic/logstash
